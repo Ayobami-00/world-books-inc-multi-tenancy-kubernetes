@@ -64,7 +64,6 @@ jobs:
 
       - name: DEBUG
         run: |
-          cd ..
           ls
 
       - name: Build, tag, and push image to Amazon ECR
