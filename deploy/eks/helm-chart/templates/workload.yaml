@@ -39,7 +39,7 @@ kind: Deployment
 metadata:
   labels:
     app: dynamodb
-  name: {{ include "helm-chart.appName" . }}-dynamodb
+  name: {{ include "helm-chart.appName" . }}-dynamodb-deployment
 spec:
   replicas: 1
   selector:
