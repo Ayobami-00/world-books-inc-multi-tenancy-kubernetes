@@ -18,6 +18,14 @@ permissions:
       contents: read    # This is required for actions/checkout
 
 jobs:
+
+  checkout_repo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
 # backend-service-go folder job.
   deploy_backend_service_go:
 
@@ -29,10 +37,7 @@ jobs:
       # backend-service-go folder working directory.
         working-directory: backend-service-go
 
-    steps:
-
-      - name: Check out code
-        uses: actions/checkout@v2   
+    steps:   
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -76,10 +81,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Check out code
-        uses: actions/checkout@v2  
-
+    
       - name: Install kubectl
         uses: azure/setup-kubectl@v1
         with:
