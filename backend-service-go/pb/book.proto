@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package books;
+
+option go_package = "./pb";
+
+message Book {
+  string id = 1;
+  string created_by = 2;
+  string name = 3;
+  string description = 4;
+  int64 quantity = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  }
+
+
+
+  message BookUpdate {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    int64 quantity = 4;
+    }
+
+// Fetch All Books
+
+message FetchAllBooksRequest {}
+
+
+message FetchAllBooksResponseData {
+  repeated Book books = 1;
+  
+}
+
+message FetchAllBooksResponse {
+  int64 code = 1;
+  string message = 2;
+  FetchAllBooksResponseData data = 3;
+}
+
+
+// Create Book
+
+message CreateBookRequest {
+    string created_by = 1;
+    string name = 2;
+    string description = 3;
+    int64 quantity = 4;
+    }
+
+
+message CreateBookResponse {
+  int64 code = 1;
+  string message = 2;
+
+}
+
+
+// Fetch Book ById
+
+message FetchBookByIdRequest {
+  string id = 1;
+
+}
+
+message FetchBookByIdResponse {
+  int64 code = 1;
+  string message = 2;
+  Book book = 3;
+
+}
+
+
+// Update Book
+
+message UpdateBookRequest {
+  BookUpdate book = 1;
+
+}
+
+message UpdateBookResponse {
+  int64 code = 1;
+  string message = 2;
+  Book book = 3;
+
+}
+
+
+
+// Delete Book
+
+message DeleteBookRequest {
+  string id = 1;
+
+}
+
+message DeleteBookResponse {
+  int64 code = 1;
+  string message = 2;
+
+}
+
+
+
+
+service BooksService {
+  rpc FetchAll(FetchAllBooksRequest) returns (FetchAllBooksResponse) {}
+  rpc Create(CreateBookRequest) returns (CreateBookResponse) {}
+  rpc FetchById(FetchBookByIdRequest) returns (FetchBookByIdResponse) {}
+  rpc Update(UpdateBookRequest) returns (UpdateBookResponse) {}
+  rpc DeleteById(DeleteBookRequest) returns (DeleteBookResponse) {}
+}
