@@ -62,7 +62,7 @@ jobs:
 
       - name: DEBUG
         run: |
-          ls -a /github/workspace
+          ls -a backend-service-go
 
       - name: Build, tag, and push image to Amazon ECR
         env:
