@@ -50,7 +50,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Load envs and save to .env file
-        uses: SpicyPizza/create-envfile@v1.3
+        uses: SpicyPizza/create-envfile@v2.0.2
         with:
           envkey_ENVIRONMENT:  ${{ secrets.ENVIRONMENT }}
           envkey_SERVER_PORT:  ${{ secrets.SERVER_PORT }}
