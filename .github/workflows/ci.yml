@@ -10,6 +10,7 @@ env:
   ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
   ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
   IMAGE_NAME: backend-service-go
+  WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME: ${{ secrets.WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME }}
   IMAGE_TAG: ${{ github.sha }}
 
 permissions:
@@ -82,3 +83,13 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY/$IMAGE_NAME:latest .
           docker push -a $ECR_REGISTRY/$ECR_REPOSITORY/$IMAGE_NAME
+
+      - name: Update kube config
+        run: aws eks update-kubeconfig --name $WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME --region $AWS_REGION
+
+      - name: Deploy to AWS EKS
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          cd deploy/eks/helm-chart
+          helm upgrade --install $IMAGE_NAME .  --set name=$IMAGE_TAG --set deployment.image.repository=$ECR_REGISTRY/$ECR_REPOSITORY/$IMAGE_NAME --set deployment.image.tag=$IMAGE_TAG 
