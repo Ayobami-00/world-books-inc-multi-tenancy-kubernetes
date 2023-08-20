@@ -39,7 +39,7 @@ kind: Deployment
 metadata:
   labels:
     app: dynamodb
-  name: {{ include "helm-chart.appName" . }}-database
+  name: {{ include "helm-chart.appName" . }}-dynamodb
 spec:
   replicas: 1
   selector:
@@ -56,9 +56,9 @@ spec:
         ports:
         - containerPort: 8000
         volumeMounts:
-        - name: dynamodb-persistent-storage
+        - name: {{ include "helm-chart.appName" . }}-dynamodb-persistent-storage
           mountPath: /var/lib/dynamodb
       volumes:
-        - name: mongo-persistent-storage
+        - name: {{ include "helm-chart.appName" . }}-dynamodb-persistent-storage
           persistentVolumeClaim:
             claimName: {{ include "helm-chart.appName" . }}-pvc
