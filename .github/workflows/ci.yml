@@ -29,7 +29,8 @@ jobs:
 # backend-service-go folder job.
   deploy_backend_service_go:
 
-    name: Deploy World Books Inc Backend Service Go to AWS EKS
+    name: Deploy World Books Inc Backend Service Go Image to AWS ECR
+    needs: checkout_repo
     runs-on: ubuntu-latest
 
     defaults:
@@ -81,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+
       - name: Install kubectl
         uses: azure/setup-kubectl@v1
         with:
