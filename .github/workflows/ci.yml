@@ -58,7 +58,7 @@ jobs:
           envkey_BACKEND_SERVICE_URL: ${{ secrets.BACKEND_SERVICE_URL }} 
           
           # fail_on_empty: true
-          file_name: .env
+          file_name: ./backend-service-go/.env
 
       - name: DEBUG
         run: |
