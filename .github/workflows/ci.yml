@@ -59,6 +59,8 @@ jobs:
           
           # fail_on_empty: true
           file_name: .env
+          
+          directory: backend-service-go
 
       - name: DEBUG
         run: |
