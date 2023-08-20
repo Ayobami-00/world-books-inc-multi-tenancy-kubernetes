@@ -62,7 +62,7 @@ jobs:
 
       - name: DEBUG
         run: |
-          ls
+          ls -a /github/workspace
 
       - name: Build, tag, and push image to Amazon ECR
         env:
