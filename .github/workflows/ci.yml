@@ -58,11 +58,12 @@ jobs:
           envkey_BACKEND_SERVICE_URL: ${{ secrets.BACKEND_SERVICE_URL }} 
           
           # fail_on_empty: true
-          file_name: ./backend-service-go/.env
+          file_name: .env
 
       - name: DEBUG
         run: |
-          ls -a backend-service-go
+          cd ..
+          ls
 
       - name: Build, tag, and push image to Amazon ECR
         env:
