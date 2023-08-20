@@ -50,24 +50,15 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Load envs and save to .env file
-        uses: SpicyPizza/create-envfile@v2.0.2
+        uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_ENVIRONMENT:  ${{ secrets.ENVIRONMENT }}
           envkey_SERVER_PORT:  ${{ secrets.SERVER_PORT }}
           envkey_CONTEXT_TIMEOUT: ${{ secrets.CONTEXT_TIMEOUT }}
           envkey_BACKEND_SERVICE_URL: ${{ secrets.BACKEND_SERVICE_URL }} 
           
-          # fail_on_empty: true
+          fail_on_empty: true
           file_name: .env
-
-      - name: Debug After .env creation
-        run: |
-          echo "Working Directory After: $PWD"
-          echo "Contents After:"
-          ls -a
-          cd ..
-          cd ..
-          ls
 
       - name: Build, tag, and push image to Amazon ECR
         env:
