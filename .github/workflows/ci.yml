@@ -115,6 +115,10 @@ jobs:
       - name: Update kube config
         run: aws eks update-kubeconfig --name $WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME --region $AWS_REGION
 
+      - name: Deploy Amazon EBS CSI Driver to EKS
+        run: |
+          kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
+
       - name: Deploy to AWS EKS
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
