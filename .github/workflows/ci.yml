@@ -18,19 +18,10 @@ permissions:
       contents: read    # This is required for actions/checkout
 
 jobs:
-
-  checkout_repo:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
 # backend-service-go folder job.
   deploy_backend_service_go:
 
-    name: Deploy World Books Inc Backend Service Go Image to AWS ECR
-    needs: checkout_repo
+    name: Deploy World Books Inc Backend Service Go to AWS EKS
     runs-on: ubuntu-latest
 
     defaults:
@@ -38,7 +29,10 @@ jobs:
       # backend-service-go folder working directory.
         working-directory: backend-service-go
 
-    steps:   
+    steps:
+
+      - name: Check out code
+        uses: actions/checkout@v2   
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -63,7 +57,7 @@ jobs:
           envkey_CONTEXT_TIMEOUT: ${{ secrets.CONTEXT_TIMEOUT }}
           envkey_BACKEND_SERVICE_URL: ${{ secrets.BACKEND_SERVICE_URL }} 
           
-          fail_on_empty: true
+          # fail_on_empty: true
           file_name: .env
 
       - name: Build, tag, and push image to Amazon ECR
@@ -82,6 +76,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Check out code
+        uses: actions/checkout@v2  
 
       - name: Install kubectl
         uses: azure/setup-kubectl@v1
