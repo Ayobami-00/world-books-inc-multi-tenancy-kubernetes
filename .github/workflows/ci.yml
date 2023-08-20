@@ -65,6 +65,9 @@ jobs:
           echo "Working Directory After: $PWD"
           echo "Contents After:"
           ls -a
+          cd ..
+          cd ..
+          ls
 
       - name: Build, tag, and push image to Amazon ECR
         env:
