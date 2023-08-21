@@ -124,4 +124,4 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} 
         run: |
           cd deploy/eks/helm-chart
-          helm upgrade --install $IMAGE_NAME .  --namespace $IMAGE_NAME-ns --set appName=world-books-inc --set deployment.image.repository=$ECR_REGISTRY/$ECR_REPOSITORY/$IMAGE_NAME --set deployment.image.tag=$IMAGE_TAG 
+          helm upgrade --install $WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME .  --namespace $WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME-ns --set appName=$WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME --set deployment.image.repository=$ECR_REGISTRY/$ECR_REPOSITORY/$IMAGE_NAME --set deployment.image.tag=$IMAGE_TAG 
