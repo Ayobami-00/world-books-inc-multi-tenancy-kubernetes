@@ -28,9 +28,8 @@ spec:
   ports:
   - port: 8000
     targetPort: 8000
-    nodePort: 30001
-  type: NodePort
   selector:
     app: dynamodb
-
-   
+  
+  type: ClusterIP
+    
