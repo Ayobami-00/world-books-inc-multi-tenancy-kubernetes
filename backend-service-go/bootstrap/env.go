@@ -12,7 +12,7 @@ func NewEnv() *Env {
 		AppEnv:            "PRODUCTION",
 		ServerPort:        ":8080",
 		ContextTimeout:    10,
-		BackendServiceUrl: "0.0.0.0:9090",
+		BackendServiceUrl: "0.0.0.0:8080",
 	}
 
 	// viper.SetConfigFile(".env")
