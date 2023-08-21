@@ -43,7 +43,7 @@ func NewDynamoDbDatabase(env *Env) *Database {
 	} else {
 
 		sess = session.Must(session.NewSession(&aws.Config{
-			Endpoint: aws.String("http://10.100.166.132:8000"),
+			Endpoint: aws.String("http://world-books-inc-dynamodb-service:8000"),
 			Region:   aws.String("us-west-2"),
 		}))
 
