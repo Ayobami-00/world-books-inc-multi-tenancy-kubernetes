@@ -36,14 +36,15 @@ func NewDynamoDbDatabase(env *Env) *Database {
 
 	if env.AppEnv == "PRODUCTION" {
 
-		sess = session.Must(session.NewSessionWithOptions(session.Options{
-			SharedConfigState: session.SharedConfigEnable,
+		sess = session.Must(session.NewSession(&aws.Config{
+			Endpoint: aws.String("http://world-books-inc-dynamodb-service:8000"),
+			Region:   aws.String("us-west-2"),
 		}))
 
 	} else {
 
 		sess = session.Must(session.NewSession(&aws.Config{
-			Endpoint: aws.String("http://world-books-inc-dynamodb-service:8000"),
+			Endpoint: aws.String("http://localhost:8000"),
 			Region:   aws.String("us-west-2"),
 		}))
 
