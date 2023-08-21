@@ -125,4 +125,4 @@ jobs:
         run: |
           cd deploy/eks/helm-chart
           kubectl create namespace $WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME-ns
-          helm upgrade --install $WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME .  --namespace $WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME-ns --set appName=$WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME --set deployment.image.repository=$ECR_REGISTRY/$ECR_REPOSITORY/$IMAGE_NAME --set deployment.image.tag=$IMAGE_TAG
+          helm upgrade --install $WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME . --set appName=$WORLD_BOOKS_INC_KUBERNETES_CLUSTER_NAME --set deployment.image.repository=$ECR_REGISTRY/$ECR_REPOSITORY/$IMAGE_NAME --set deployment.image.tag=$IMAGE_TAG
