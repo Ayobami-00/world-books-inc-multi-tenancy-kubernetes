@@ -1,6 +1,6 @@
 # Implementing Multi-Tenancy in Kubernetes
 
-Welcome to the repository for the article (currently in draft): "Implementing Multi-Tenancy in Kubernetes." This repository contains code examples, resources, and insights discussed in the article.
+Welcome to the repository for the [article](https://medium.com/@owumifestus/implementing-a-multi-tenancy-solution-in-a-kubernetes-cluster-f90241b28c29) (currently in draft): "Implementing Multi-Tenancy in Kubernetes." This repository contains code examples, resources, and insights discussed in the article.
 
 ## Introduction
 
